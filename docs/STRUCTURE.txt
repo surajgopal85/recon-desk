@@ -1,0 +1,3 @@
+apps/web  — TypeScript / Next.js (later)
+engine    — Python reconciliation engine (the agent)
+infra     — Terraform (later)
