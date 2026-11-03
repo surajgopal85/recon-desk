@@ -32,4 +32,22 @@ def match_by_spi(ledger: list[LedgerEntry], stripe: list[StripeRecord]) -> Match
         A MatchResult partitioning both inputs into matched pairs and the
         leftovers on each side.
     """
-    raise NotImplementedError
+
+    # build a dict[str, StripeRecord] keyed by stripe_payment_id
+    stripe_dict = {obj.stripe_payment_id: obj for obj in stripe}
+    ledger_id_set = {obj.stripe_payment_id for obj in ledger}
+
+    matched = []
+    unmatched_in_stripe = []
+    unmatched_in_ledger = []
+    for pymt in ledger:
+        if pymt.stripe_payment_id in stripe_dict:
+            matched.append((pymt, stripe_dict[pymt.stripe_payment_id]))
+        else:
+            unmatched_in_ledger.append(pymt)
+
+    for stripe_pymt in stripe:
+        if stripe_pymt.stripe_payment_id not in ledger_id_set:
+            unmatched_in_stripe.append(stripe_pymt)
+
+    return MatchResult(matched, unmatched_in_ledger, unmatched_in_stripe)
