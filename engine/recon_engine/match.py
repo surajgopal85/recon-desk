@@ -27,6 +27,8 @@ def match_by_spi(ledger: list[LedgerEntry], stripe: list[StripeRecord]) -> Match
       ``ledger`` yields one entry in ``unmatched_in_ledger``; an SPI present
       only in ``stripe`` yields one entry in ``unmatched_in_stripe``.
     - Inputs are not mutated.
+    -stripe_dict currently keeps only last record if an ID repeats --- this assumes
+    stripe payment intents (SPIs) are unique within each side.
 
     Returns:
         A MatchResult partitioning both inputs into matched pairs and the
