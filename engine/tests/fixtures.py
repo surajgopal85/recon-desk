@@ -36,6 +36,10 @@ SHARED_SPIS = [
     "pi_hpl_0030_portfolio",
 ]
 
+# SPIs present on only one side. Rule 1 reports these; rule 2 never sees them.
+STRIPE_ONLY_SPI = "pi_cas_0007_ghostwebhook"
+LEDGER_ONLY_SPI = "pi_pie_0042_phantomrow"
+
 # Shared SPIs that rule 2 should flag, and what it should find on each.
 FEE_DRIFT_SPI = "pi_pie_0019_shortfee"
 AMOUNT_DRIFT_SPI = "pi_hpl_0022_amountdrift"

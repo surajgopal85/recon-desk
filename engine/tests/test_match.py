@@ -4,10 +4,13 @@ Red until match_by_spi has a body.
 """
 
 from recon_engine.match import match_by_spi
-from tests.fixtures import SHARED_SPIS, sample_ledger, sample_stripe
-
-LEDGER_ONLY_SPI = "pi_pie_0042_phantomrow"
-STRIPE_ONLY_SPI = "pi_cas_0007_ghostwebhook"
+from tests.fixtures import (
+    LEDGER_ONLY_SPI,
+    SHARED_SPIS,
+    STRIPE_ONLY_SPI,
+    sample_ledger,
+    sample_stripe,
+)
 
 
 def test_matches_every_shared_spi() -> None:
